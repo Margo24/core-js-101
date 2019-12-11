@@ -207,8 +207,8 @@ function roundToPowerOfTen(num, pow) {
  */
 function isPrime(n) {
   // eslint-disable-next-line no-plusplus
-  for (let i = 2; i < Math.sqrt(n); i++) {
-    if (n % i === 0) {
+  for (let i = 2; i < n ** 2; i++) {
+    if (n % i === 0 && i !== n) {
       return false;
     }
   }
