@@ -27,8 +27,16 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  switch (true) {
+    case (num % 3 === 0 && num % 5 === 0): return 'FizzBuzz';
+
+    case (num % 3 === 0): return 'Fizz';
+
+    case (num % 5 === 0): return 'Buzz';
+
+    default: return num;
+  }
 }
 
 
@@ -43,8 +51,13 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  let factorial = 1;
+  // eslint-disable-next-line no-plusplus
+  for (let i = 1; i <= n; i++) {
+    factorial *= i;
+  }
+  return factorial;
 }
 
 
@@ -60,8 +73,14 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let summ = n1;
+  while (n1 < n2) {
+    // eslint-disable-next-line no-plusplus,no-param-reassign
+    ++n1;
+    summ += n1;
+  }
+  return summ;
 }
 
 
@@ -80,8 +99,8 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  return !!((a + b > c && a + c > b && b + c > a));
 }
 
 
@@ -148,8 +167,17 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  const firstXEdge = circle.center.x - circle.radius;
+  const secondXEdge = circle.center.x + circle.radius;
+  const firstYEdge = circle.center.y - circle.radius;
+  const secondYEdge = circle.center.y + circle.radius;
+  const isInsideX = firstXEdge < point.x && point.x < secondXEdge;
+  const isInsideY = firstYEdge < point.y && point.y < secondYEdge;
+  if (isInsideX && isInsideY) {
+    return true;
+  }
+  return false;
 }
 
 
@@ -225,8 +253,13 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  const a = Math.abs(num).toString().split('').reverse()
+    .join('');
+  if (num < 0) {
+    return parseInt(a, 10) * (-1);
+  }
+  return parseInt(a, 10);
 }
 
 
