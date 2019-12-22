@@ -294,8 +294,27 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  let summ = 0;
+  const cardArray = ccn.toString().split('');
+  for (let i = 0; i < cardArray.length; i += 1) {
+    if (i % 2 !== 0) {
+      // eslint-disable-next-line operator-assignment
+      cardArray[i] = cardArray[i] ** 2;
+      if (cardArray[i] > 9) {
+        let array;
+        let num = 0;
+        while (Math.floor(cardArray[i] / 10)) {
+          array = cardArray[i].toString().split('');
+          num = array.reduce((previousValue, currentValue) => +previousValue + +currentValue);
+          // eslint-disable-next-line no-param-reassign
+          cardArray[i] = num;
+        }
+      }
+    }
+    summ += cardArray[i];
+  }
+  return summ % 10 === 0;
 }
 
 /**
@@ -346,8 +365,20 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const controlString = '[](){}<>';
+  const arr = str.split('');
+  const stack = [];
+  let position = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    position = controlString.indexOf(arr[i]);
+    if (position % 2 === 0) {
+      stack.push(position + 1);
+    } else if (stack.pop() !== position) {
+      return false;
+    }
+  }
+  return stack.length === 0;
 }
 
 
