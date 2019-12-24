@@ -31,8 +31,8 @@
 function willYouMarryMe(isPositiveAnswer) {
   return new Promise(((resolve, reject) => {
     if (typeof (isPositiveAnswer) === 'boolean') {
-      const answer = isPositiveAnswer ? 'Hooray!!! She said "Yes"!' : 'Oh no, she said "No".';
-      resolve(answer);
+      const girlAnswer = isPositiveAnswer ? 'Hooray!!! She said "Yes"!' : 'Oh no, she said "No".';
+      resolve(girlAnswer);
     } else {
       reject(new Error('Wrong parameter is passed! Ask her again.'));
     }
